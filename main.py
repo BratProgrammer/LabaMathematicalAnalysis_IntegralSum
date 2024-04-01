@@ -2,36 +2,47 @@ import math
 
 import matplotlib.pyplot as pyplot
 from matplotlib.patches import Rectangle
+from scipy import integrate
 import numpy
 
 def function(x):
-    return math.exp(1)**(3*x)
-
-x = numpy.arange(0, 0.51, 0.01)
-f = numpy.exp(1)**(3*x);
+    return math.sin(x) * 2 * x
 
 n = int(input("Введите количесво отрезков в разбиении: "))
+left_limit = int(input("Введите левую границу отрезка: "))
+right_limit = int(input("Введите правую границу отрезка: "))
 
-step = 0.5 / n
+step = (right_limit - left_limit) / n
+x = numpy.arange(left_limit, right_limit, 0.01)
+f_line = numpy.sin(x)*2*x;
 
-pyplot.ylim(-2, 5)
+
 
 integral_sum = 0
 
-i = 0
-while i < 0.5:
-    rectangle = Rectangle((i, 0), step, function(i + step/2), edgecolor = 'black', facecolor = 'blue', fill= True, lw=1)
+i = left_limit
+
+max_function_result = function(left_limit)
+min_function_result = function(left_limit)
+while i < right_limit:
+    function_result = function(i + step/2)
+    rectangle = Rectangle((i, 0), step, function_result, edgecolor = 'black', facecolor = 'blue', fill= True, lw=1)
     integral_sum += rectangle.get_width() * rectangle.get_height()
     pyplot.gca().add_patch(rectangle)
+    max_function_result = max(max_function_result, function_result)
+    min_function_result = min(min_function_result, function_result)
     i += step
 
+pyplot.ylim(min_function_result - 1, max_function_result + 1)
+
+print("")
 print("Результаты:")
 
-integral = math.exp(1.5) / 3 - 1/3
+integral = integrate.quad(function, left_limit, right_limit)[0]
 
 print("Нужное значение: " + str(integral))
-print("Получили " + str(integral_sum))
+print("Получили: " + str(integral_sum))
 print("Разница: " + str(abs(integral - integral_sum)))
 
-pyplot.plot(x, f, 'r', lw=2)
+pyplot.plot(x, f_line, 'r', lw=2)
 pyplot.show()
