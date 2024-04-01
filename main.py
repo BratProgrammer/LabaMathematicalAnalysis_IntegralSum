@@ -17,7 +17,6 @@ x = numpy.arange(left_limit, right_limit, 0.01)
 f_line = numpy.sin(x)*2*x;
 
 
-
 integral_sum = 0
 
 i = left_limit
