@@ -30,7 +30,7 @@ print("Результаты:")
 integral = math.exp(1.5) / 3 - 1/3
 
 print("Нужное значение: " + str(integral))
-print("Получили " + str(integral_sum))
+print("Получили: " + str(integral_sum))
 print("Разница: " + str(abs(integral - integral_sum)))
 
 pyplot.plot(x, f, 'r', lw=2)
