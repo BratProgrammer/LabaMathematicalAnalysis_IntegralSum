@@ -6,7 +6,7 @@ from scipy import integrate
 import numpy
 
 def function(x):
-    return math.sin(x) * x
+    return x**3
 
 n = int(input("Введите количесво отрезков в разбиении: "))
 left_limit = int(input("Введите левую границу отрезка: "))
@@ -14,7 +14,7 @@ right_limit = int(input("Введите правую границу отрезк
 
 step = (right_limit - left_limit) / n
 x = numpy.arange(left_limit, right_limit, 0.01)
-f_line = numpy.sin(x)*x;
+f_line = x**3;
 
 
 integral_sum = 0
@@ -41,7 +41,6 @@ integral = integrate.quad(function, left_limit, right_limit)[0]
 
 print("Нужное значение: " + str(integral))
 print("Получили: " + str(integral_sum))
-print("Разница: " + str(abs(integral - integral_sum)))
 
 pyplot.plot(x, f_line, 'r', lw=2)
 pyplot.show()
