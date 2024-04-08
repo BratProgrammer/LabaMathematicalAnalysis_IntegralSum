@@ -45,7 +45,7 @@ i = left_limit
 
 max_function_result = function(left_limit)
 min_function_result = function(left_limit)
-while i < right_limit:
+while i < right_limit - step:
     function_result = function(getEquipment(i))
     rectangle = Rectangle((i, 0), step, function_result, edgecolor = 'black', facecolor = 'blue', fill= True, lw=1)
     integral_sum += rectangle.get_width() * rectangle.get_height()

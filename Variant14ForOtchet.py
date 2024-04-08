@@ -33,14 +33,14 @@ def getEquipment(start_of_Segment):
         return start_of_Segment + random.random() % step
 
 x = numpy.arange(left_limit, right_limit, 0.01)
-f_line = x**3;
+f_line = x**3
 
 integral_sum = 0
 i = left_limit
 
 max_function_result = function(left_limit)
 min_function_result = function(left_limit)
-while i < right_limit:
+while i < right_limit - step:
     function_result = function(getEquipment(i))
     rectangle = Rectangle((i, 0), step, function_result, edgecolor = 'black', facecolor = 'blue', fill= True, lw=1)
     integral_sum += rectangle.get_width() * rectangle.get_height()
